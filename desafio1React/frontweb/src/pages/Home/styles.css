@@ -30,13 +30,12 @@
 .home-secondary {
   padding: 20px;
   margin: 20px;
-  background-color: #ededed;
-  border-radius: 10px;
   text-align: center;
 }
 
 .button-phrase {
   display: none;
+  color: #585858;
 }
 
 @media (min-width: 576px) {

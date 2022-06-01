@@ -1,11 +1,11 @@
-import Navbar from "../../components/navbar";
 import { ReactComponent as CarImg } from "../../assets/img/car.svg";
 import "./styles.css";
 import Buttom from "../../components/buttom";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
-      <Navbar />
+     
 
       <div className="home-principal">
         <div className="home-image-principal">
@@ -19,8 +19,11 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="home-secondary">
-        <Buttom /> <span className="button-phrase">Comece agora a navegar</span>
+      <div className="base-card home-secondary">
+          <Link to="/cars">
+          <Buttom />
+          </Link>
+         <span className="button-phrase">Comece agora a navegar</span>
       </div>
     </>
   );

@@ -3,11 +3,6 @@
 * {
   font-family: 'Roboto', sans-serif;
 }
-
-body, html{
-  height: 100%;
-}
-
 h1, h2, h3, h4, h5 ,h6 {
   font-weight: 700;
   margin-bottom: 0;
@@ -16,4 +11,9 @@ h1, h2, h3, h4, h5 ,h6 {
 a, a:hover {
   text-decoration: none;
   color: unset;
+}
+
+.base-card {
+  background-color: #ededed;
+  border-radius: 10px;
 }

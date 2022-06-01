@@ -1,3 +1,7 @@
-.btn {
-    padding: 12px 20px 12px 20px;
+.change-btn {
+    padding: 12px 35px 12px 35px;
+}
+
+.change-btn h5 {
+    font-size: 14px;
 }
