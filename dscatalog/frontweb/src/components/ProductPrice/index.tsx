@@ -1,12 +1,16 @@
+import { formatterPrice } from 'util/formatters';
 import './styles.css';
 
+type Props = {
+    price: number;
+}
 
-const ProductPrice = () => {
+const ProductPrice = ( { price } : Props) => {
 
     return(
         <div className="product-price-container">
             <span>R$</span> 
-            <h3>2345.76</h3>   
+            <h3>{formatterPrice(price)}</h3>   
          </div>
     )
 }

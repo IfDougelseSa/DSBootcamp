@@ -10,7 +10,7 @@ public class Factory {
 	
 	public static Product createProduct() {
 		Product product = new Product(1L, "The Lord of the Rings", "Good film", 90.5, "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg", Instant.now());
-		product.getCategories().add(new Category(1L, "Livros"));
+		product.getCategories().add(createCategory());
 		return product;
 	}
 	
@@ -19,4 +19,7 @@ public class Factory {
 		return new ProductDTO(product, product.getCategories());
 	}
 	
+	public static Category createCategory() {
+		return new Category(1L, "Livros");
+	}
 }
