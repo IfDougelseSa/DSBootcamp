@@ -12,53 +12,67 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.devsuperior.dscatalog.entities.Product;
 import com.devsuperior.dscatalog.tests.Factory;
 
-@DataJpaTest //Quando for testar apenas o repositorio
+@DataJpaTest // Quando for testar apenas o repositorio
 public class ProductRepositoryTests {
-	
+
 	@Autowired
 	private ProductRepository repository;
-	
-	private long exintinId;
+
+	private long existingId;
 	private long nonExistingId;
 	private long countTotalProducts;
-	
+
 	@BeforeEach
 	void setUp() throws Exception {
-		exintinId = 1L;
+		existingId = 1L;
 		nonExistingId = 1000L;
 		countTotalProducts = 25;
 	}
 	
 	@Test
+	public void findByIdShouldReturnOptionalNullWhenIdNotExists() {
+		Optional<Product> product = repository.findById(nonExistingId);
+		Assertions.assertEquals(Optional.empty(), product);
+	}
+
+	@Test
+	public void findByIdShouldReturnOptionalNotNullWhenIdExists() {
+
+		Optional<Product> product = repository.findById(existingId);
+		Assertions.assertTrue(product.isPresent());
+
+	}
+
+	@Test
 	public void saveShouldPersistWithAutoIncrementWhenIdIsNull() {
-		
+
 		Product product = Factory.createProduct();
 		product.setId(null);
-		
+
 		product = repository.save(product);
-		
+
 		Assertions.assertNotNull(product.getId());
 		Assertions.assertEquals(countTotalProducts + 1, product.getId());
-		
+
 	}
-	
+
 	@Test
 	public void deleteShouldDeleteObjectWhenIdExists() {
-		
-		repository.deleteById(exintinId);
-		
-		Optional<Product> result = repository.findById(exintinId);
-		
-		Assertions.assertFalse(result.isPresent());//false = não ta presente o objeto
+
+		repository.deleteById(existingId);
+
+		Optional<Product> result = repository.findById(existingId);
+
+		Assertions.assertFalse(result.isPresent());// false = não ta presente o objeto
 	}
-	
+
 	@Test
 	public void deleteShouldThrowEmptyResultDataAccessExceptionWhenIdDoesNotExist() {
-		
+
 		Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
 			repository.deleteById(nonExistingId);
 		});
-		
+
 	}
-	
+
 }
